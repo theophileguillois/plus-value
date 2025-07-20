@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Formulaire</title>
+	</head>
+	<body>
+		<h1>Formulaire</h1>
+
+		<form action="{{url_for('resultat')}}" method="POST">
+			<h2>Prix de cession</h2>
+
+			<label for="nbr_BTC_vendu">Nbr de BTC vendu</label>
+			<input type="text" name="nbr_BTC_vendu" id="nbr_BTC_vendu">
+
+			<br>
+
+			<label for="montant_brut_vente">Montant brut de la vente en EUR</label>
+			<input type="text" name="montant_brut_vente" id="montant_brut_vente">
+
+			<br>
+
+			<label for="frais_EUR">Montant des frais en EUR</label>
+			<input type="text" name="frais_vente_EUR" id="frais_EUR">
+
+			<br>
+
+			<label for="prix_1_EUR_en_BTC">Prix d'1€ en BTC</label>
+			<input type="text" name="prix_1_EUR_en_BTC" id="prix_1_EUR_en_BTC">
+
+			<br>
+
+			<p>Entrer d'abord des acquisitions avant de soumettre ce formulaire</p>
+
+			<input type="submit" value="Soumettre">
+		</form>
+
+		<h2>Acquisitions</h2>
+
+		<p>Vous devez ajouter vos acquisitions une par une</p>
+
+		<form action="{{url_for('formulaire')}}" method="POST">
+			<label for="nbr_BTC_acquis">Nbr de BTC acheté</label>
+			<input type="text" name="nbr_BTC_acquis" id="nbr_BTC_acquis">
+
+			<br>
+
+			<label for="montant_brut_achat">Montant brut de l'achat en EUR</label>
+			<input type="text" name="montant_brut_achat" id="montant_brut_achat">
+
+			<br>
+
+			<input type="submit" value="Calculer">
+		</form>
+
+		<h2>Liste des acquisitions</h2>
+
+		<ul>
+			{% for acquisition in liste_acquisitions %}
+				<li>{{ acquisition[0] }} {{ acquisition[1] }}</li>
+			{% endfor %}
+		</ul>
+
+		{% if plus_value %}
+			<h2 style="color: red;">Votre plus-value est {{ plus_value }} EUR.</h2>
+		{% endif %}
+	</body>
+</html>
